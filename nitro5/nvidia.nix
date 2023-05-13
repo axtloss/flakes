@@ -12,6 +12,10 @@ in
 {
   environment.systemPackages = [ nvidia-offload ];
 
+  hardware.nvidia.modesetting.enable = true;
+  services.switcherooControl.enable = true;
+
+
   services.xserver.videoDrivers = [ "nvidia" ];
   hardware.nvidia.prime = {
     offload.enable = true;

@@ -29,16 +29,30 @@
         system = "x86_64-linux";
         channelName = "nixpkgs";
         modules = [
-          ./boot.nix
-          ./gnome.nix
+          ./common/boot.nix
+          ./common/gnome.nix
           #./kde.nix
-          ./hardware-configuration.nix
-          ./networking.nix
-          ./nvidia.nix
-          ./packages.nix
-          ./sound.nix
-          ./users.nix
-          ./virtualisation.nix
+          ./nitro5/hardware-configuration.nix
+          ./nitro5/networking.nix
+          ./nitro5/nvidia.nix
+          ./common/packages.nix
+          ./common/sound.nix
+          ./common/users.nix
+          ./common/virtualisation.nix
+        ];
+      };
+      hosts.m4800 = {
+        system = "x86_64-linux";
+        channelName = "nixpkgs";
+        modules = [
+          ./common/boot.nix
+          ./common/gnome.nix
+          ./m4800/hardware-configuration.nix
+          ./m4800/networking.nix
+          ./common/packages.nix
+          ./common/sound.nix
+          ./common/users.nix
+          ./common/virtualisation.nix
         ];
       };
       hosts.superminimal5 = {
@@ -51,7 +65,7 @@
            ./minimal/networking.nix
            ./minimal/packages.nix
            ./minimal/podman.nix
-           ./users.nix
+           ./common/users.nix
          ];
       };
     };

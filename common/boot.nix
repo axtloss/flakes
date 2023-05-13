@@ -7,12 +7,7 @@
     boot.loader.efi.efiSysMountPoint = "/boot/efi";
 #    boot.kernelPackages = pkgs.linuxKernel.packages.linux_xanmod_latest.nvidia_x11_beta_open;
 
-    hardware.nvidia.modesetting.enable = true;
-    services.xserver.videoDrivers = [ "nvidia" ];
-
-   services.switcherooControl.enable = true;
-
-   services.udev.extraRules = "SUBSYSTEM==\"usb\", ATTR{idVendor}==\"18d1\", GROUP=\"wheel\"\n";
+   services.udev.extraRules = "SUBSYSTEM==\"usb\", ATTR{idVendor}==\"18d1\", GROUP=\"wheel\"\nSUBSYSTEM==\"usb\", ATTR{idVendor}==\"0451\", ATTR{idProduct}==\"e022\", ENV{ID_PDA}=\"1\"\n";
 
     # This value determines the NixOS release from which the default
     # settings for stateful data, like file locations and database versions

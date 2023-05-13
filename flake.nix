@@ -47,7 +47,7 @@
         modules = [
           ./common/boot.nix
           ./common/gnome.nix
-          ./m4800/hardware-configuration.nix
+          ./hardware-configuration.nix
           ./m4800/networking.nix
           ./common/packages.nix
           ./common/sound.nix

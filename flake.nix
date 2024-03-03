@@ -2,7 +2,7 @@
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
     stable.url = "github:NixOS/nixpkgs/release-22.05";
-    utils.url = "github:gytis-ivaskevicius/flake-utils-plus/v1.3.1";
+    utils.url = "github:gytis-ivaskevicius/flake-utils-plus/v1.4.0";
     nur.url = "github:nix-community/NUR";
     nixos-hardware = {
       url = "github:NixOS/nixos-hardware";
@@ -66,6 +66,24 @@
            ./minimal/packages.nix
            ./minimal/podman.nix
            ./common/users.nix
+         ];
+      };
+      hosts.hp-server = {
+         system = "x86_64-linux";
+         channelName = "nixpkgs";
+         modules = [
+           ./hardware-configuration.nix
+           ./hp-server/boot.nix
+           ./hp-server/networking.nix
+           ./hp-server/services.nix
+           ./hp-server/packages.nix
+           ./hp-server/users.nix
+           ./hp-server/nfs.nix
+           ./hp-server/syncthing.nix
+           ./hp-server/virtualisation.nix
+           ./hp-server/timers.nix
+           #./hp-server/minecraft.nix
+           ./common/sound.nix
          ];
       };
     };

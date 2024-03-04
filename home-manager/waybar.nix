@@ -3,8 +3,9 @@
   programs.waybar.enable = true;
   
   programs.waybar.settings = {
+  mainBar = {
     layer = "top";
-    modules-left = [ "custom/launcher" "cpu","memory" "custom/media" "tray" ];
+    modules-left = [ "custom/launcher" "cpu" "memory" "custom/media" "tray" ];
     modules-center = [ "sway/workspaces" ];
     modules-right = [ "sway/mode" "backlight" "pulseaudio" "clock" "battery" "custom/power" ];
 	
@@ -84,7 +85,8 @@
     "custom/power" = {
         format = " ";
         on-click = "bash ~/.config/rofi/leave/leave.sh";
-    },
+    };
+  };
   };
  
   programs.waybar.style = ''

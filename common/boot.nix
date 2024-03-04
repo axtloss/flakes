@@ -12,6 +12,9 @@
       pkiBundle = "/etc/secureboot";
     };
 
+    services.zfs.trim.enable = true;
+    services.zfs.autoScrub.enable = true;
+
     services.udev.extraRules = "SUBSYSTEM==\"usb\", ATTR{idVendor}==\"18d1\", GROUP=\"wheel\"\nSUBSYSTEM==\"usb\", ATTR{idVendor}==\"0451\", ATTR{idProduct}==\"e022\", ENV{ID_PDA}=\"1\"\n";
 
     # This value determines the NixOS release from which the default

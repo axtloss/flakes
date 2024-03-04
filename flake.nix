@@ -1,20 +1,25 @@
 {
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
-    stable.url = "github:NixOS/nixpkgs/release-22.05";
+    stable.url = "github:NixOS/nixpkgs/release-23.11";
     utils.url = "github:gytis-ivaskevicius/flake-utils-plus/v1.4.0";
     nur.url = "github:nix-community/NUR";
+    nix-flatpak.url = "github:gmodena/nix-flatpak";
     nixos-hardware = {
       url = "github:NixOS/nixos-hardware";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     home-manager = {
-      url = "github:nix-community/home-manager/release-21.11";
+      url = "github:nix-community/home-manager/release-23.11";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+    lanzaboote = {
+      url = "github:nix-community/lanzaboote/v0.3.0";
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };
 
-  outputs = inputs@{ self, nixpkgs, nixos-hardware, home-manager, nur, utils, stable, ... }:
+  outputs = inputs@{ self, nixpkgs, nixos-hardware, home-manager, lanzaboote, nix-flatpak, nur, utils, stable, ... }:
     utils.lib.mkFlake {
       inherit self inputs;
       
@@ -25,16 +30,23 @@
         nur.overlay
       ];
 
-      hosts.nixowos5 = {
+      hosts.orchid = {
         system = "x86_64-linux";
         channelName = "nixpkgs";
         modules = [
+          nix-flatpak.nixosModules.nix-flatpak
+          lanzaboote.nixosModules.lanzaboote
           ./common/boot.nix
-          ./common/gnome.nix
-          #./kde.nix
-          ./nitro5/hardware-configuration.nix
-          ./nitro5/networking.nix
-          ./nitro5/nvidia.nix
+          #./common/gnome.nix
+          #./common/kde.nix
+          ./common/vaapi.nix
+          ./common/flatpak.nix
+          ./common/sway.nix
+          ./common/syncthing.nix
+          ./orchid/hardware-configuration.nix
+          ./orchid/networking.nix
+          ./orchid/nvidia.nix
+	  ./orchid/zfs.nix
           ./common/packages.nix
           ./common/sound.nix
           ./common/users.nix

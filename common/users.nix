@@ -1,7 +1,7 @@
 { config, pkgs, ... }:
 
 {
-    users.users.axtlos = {
+    users.users.xen = {
         isNormalUser = true;
         extraGroups = [ "wheel" ]; # Enable ‘sudo’ for the user.
         shell = pkgs.fish;

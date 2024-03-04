@@ -2,12 +2,17 @@
 
 {
     # Use the systemd-boot EFI boot loader.
-    boot.loader.systemd-boot.enable = true;
+    boot.loader.systemd-boot.enable = lib.mkForce false;
     boot.loader.efi.canTouchEfiVariables = true;
-    boot.loader.efi.efiSysMountPoint = "/boot/efi";
+    boot.loader.efi.efiSysMountPoint = "/boot";
 #    boot.kernelPackages = pkgs.linuxKernel.packages.linux_xanmod_latest.nvidia_x11_beta_open;
 
-   services.udev.extraRules = "SUBSYSTEM==\"usb\", ATTR{idVendor}==\"18d1\", GROUP=\"wheel\"\nSUBSYSTEM==\"usb\", ATTR{idVendor}==\"0451\", ATTR{idProduct}==\"e022\", ENV{ID_PDA}=\"1\"\n";
+    boot.lanzaboote = {
+      enable = true;
+      pkiBundle = "/etc/secureboot";
+    };
+
+    services.udev.extraRules = "SUBSYSTEM==\"usb\", ATTR{idVendor}==\"18d1\", GROUP=\"wheel\"\nSUBSYSTEM==\"usb\", ATTR{idVendor}==\"0451\", ATTR{idProduct}==\"e022\", ENV{ID_PDA}=\"1\"\n";
 
     # This value determines the NixOS release from which the default
     # settings for stateful data, like file locations and database versions

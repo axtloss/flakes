@@ -36,9 +36,11 @@
         modules = [
           nix-flatpak.nixosModules.nix-flatpak
           lanzaboote.nixosModules.lanzaboote
+          home-manager.nixosModules.home-manager
           ./common/boot.nix
           #./common/gnome.nix
           #./common/kde.nix
+          ./common/silent-boot.nix
           ./common/vaapi.nix
           ./common/flatpak.nix
           ./common/sway.nix
@@ -51,6 +53,7 @@
           ./common/sound.nix
           ./common/users.nix
           ./common/virtualisation.nix
+          ./home-manager/home.nix
         ];
       };
       hosts.m4800 = {

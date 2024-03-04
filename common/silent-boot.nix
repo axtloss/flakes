@@ -1,4 +1,4 @@
-{config, pkgs, ...}
+{config, pkgs, ...}:
 {
   boot.loader.timeout = 0;
   boot.kernelParams = ["quiet" "rd.systemd.show_status=false" "rd.udev.log_level=3" "udev.log_priority=3"];

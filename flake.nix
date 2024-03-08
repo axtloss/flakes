@@ -48,7 +48,7 @@
           ./orchid/hardware-configuration.nix
           ./orchid/networking.nix
           ./orchid/nvidia.nix
-	  ./orchid/zfs.nix
+	        ./orchid/zfs.nix
           ./common/packages.nix
           ./common/sound.nix
           ./common/users.nix
@@ -56,18 +56,28 @@
           ./home-manager/home.nix
         ];
       };
-      hosts.m4800 = {
+      hosts.cherryblossom = {
         system = "x86_64-linux";
         channelName = "nixpkgs";
         modules = [
+          nix-flatpak.nixosModules.nix-flatpak
+          #lanzaboote.nixosModule.lanzaboote
+          home-manager.nixosModules.home-manager
           ./common/boot.nix
-          ./common/gnome.nix
-          ./hardware-configuration.nix
-          ./m4800/networking.nix
+          ./common/silent-boot.nix
+          ./common/vaapi.nix
+          ./common/flatpak.nix
+          ./common/sway.nix
+          ./common/syncthing.nix
+          ./cherryblossom/hadware-configuration.nix
+          ./cherryblossom/networking.nix
+          ./cherryblossom/nvidia.nix
+          ./cherryblossom/zfs.nix
           ./common/packages.nix
           ./common/sound.nix
           ./common/users.nix
           ./common/virtualisation.nix
+          ./home-manager/home.nix
         ];
       };
       hosts.superminimal5 = {
